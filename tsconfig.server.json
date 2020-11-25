@@ -1,0 +1,16 @@
+{
+    //"extends": "./tsconfig.json",
+    "compilerOptions": {
+      "outDir": "./dist-server/",
+      "module": "commonjs",
+      "target": "es5",
+      "skipLibCheck": true,
+      "experimentalDecorators":true,
+      "emitDecoratorMetadata": true,
+      "esModuleInterop": true
+      
+    },
+    "files": [
+      "./src/server/server.ts"
+    ]
+  }

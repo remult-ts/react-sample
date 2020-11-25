@@ -9,6 +9,15 @@
 			],
 			"label": "npm: start",
 			"detail": "react-scripts start"
+		},
+		{
+			"type": "npm",
+			"script": "node-serve",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"label": "npm: node-serve",
+			"detail": "./node_modules/.bin/tsc-watch -p tsconfig.server.json --onSuccess \"node dist-server/server/server.js"
 		}
 	]
 }
