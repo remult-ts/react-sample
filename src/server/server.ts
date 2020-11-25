@@ -5,13 +5,18 @@ import { SqlDatabase } from '@remult/core';
 import { Pool } from 'pg';
 import { config } from 'dotenv';
 import { PostgresDataProvider, PostgresSchemaBuilder } from '@remult/server-postgres';
+import { authorization } from '../common';
 
 import '../users/users';
 
 config(); //loads the configuration from the .env file
 initDatabase().then(database => { 
     let app = express();
-    initExpress(app, database, process.env.DISABLE_HTTPS == "true"); 
+    let s = initExpress(app, database, process.env.DISABLE_HTTPS == "true");
+    let signKey = process.env.TOKEN_SIGN_KEY;
+    if (!signKey)
+        throw "Please set the TOKEN_SIGN_KEY with a secret sign key";
+    authorization.init(s, signKey);
     app.use(express.static('dist'));
     app.use('/*', async (req, res) => {
 

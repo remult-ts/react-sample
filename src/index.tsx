@@ -5,11 +5,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-window.onerror = function(msg, src, lineno, colno, error) { alert(msg) }
+window.onerror = function (msg, src, lineno, colno, error) {
+  alert(msg);
+}
+window.addEventListener("unhandledrejection", function(promiseRejectionEvent) { 
+  alert(promiseRejectionEvent.reason.message);
+});
 ReactDOM.render(
   <BrowserRouter>
-  <App />
-</BrowserRouter>,
+    <App />
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
