@@ -6,6 +6,7 @@ import './App.css';
 import { authorization, context } from './common';
 import AddUser from './components/AddUser';
 import SignIn from './components/SignIn';
+import UpdatePassword from './components/UpdatePassword';
 import UserList from './components/UserList';
 
 function App() {
@@ -14,10 +15,13 @@ function App() {
   authorization.tokenInfoChanged = () => setSignedIn(context.isSignedIn());
   const renderSignIn = () => {
     if (isSignedIn)
-      return (<span>Hello {context.user.name} <button onClick={() => {
+      return (<span>Hello {context.user.name} | 
+      <Link to="/update-password">Update Password</Link>
+      <button onClick={() => {
         authorization.signOut();
         history.push("/sign-in");
-      }}>Sign Out</button></span>)
+      }}>Sign Out</button>
+      </span>)
     else
       return <Link to="/sign-in">Sign In</Link>
   }
@@ -33,6 +37,7 @@ function App() {
         <Route exact path={["/", "/users"]} component={UserList} />
         <Route exact path={["/add-user"]} component={AddUser} />
         <Route exact path={["/sign-in"]} component={SignIn} />
+        <Route exact path={["/update-password"]} component={UpdatePassword} />
       </Switch>
     </div>
   );

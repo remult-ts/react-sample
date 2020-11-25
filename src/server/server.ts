@@ -8,6 +8,7 @@ import { PostgresDataProvider, PostgresSchemaBuilder } from '@remult/server-post
 import { authorization } from '../common';
 
 import '../users/users';
+import '../users/UpdatePasswordController';
 
 config(); //loads the configuration from the .env file
 initDatabase().then(database => { 

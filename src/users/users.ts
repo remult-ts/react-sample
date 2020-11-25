@@ -23,11 +23,14 @@ export class Users extends IdEntity {
             allowApiRead: context => context.isSignedIn()
         })
     }
+    password = new StringColumn({
+        includeInApi: false
+    })
     @ServerFunction({ allowed: true })
     static async signIn(name: string, context?: Context) {
         const u = await context?.for(Users).findFirst(user => user.name.isEqualTo(name));
         if (!u)
-            throw "user does not exist";
+            throw new Error("user does not exist");
         const user: UserInfo = {
             id: u.id.value,
             name: u.name.value,
